@@ -1,6 +1,7 @@
 package com.example.projectfinal.controller;
 
 import com.example.projectfinal.model.entity.Item;
+import com.example.projectfinal.model.entity.Purchase;
 import com.example.projectfinal.service.WebService;
 import com.example.projectfinal.vo.OderVOList;
 import com.example.projectfinal.vo.OrderVO;
@@ -78,6 +79,13 @@ public class WebController {
 //
 //        return ResponseEntity.ok().body(result);
 //    }
+
+    @GetMapping("/purchases")
+    public ResponseEntity<Object> Purchases(Pageable pageable){
+        Page<Purchase> result = webService.Purchases(pageable);
+
+        return ResponseEntity.ok().body(result);
+    }
 
     @GetMapping("/orders")
     public ResponseEntity<Object> Order(Pageable pageable){

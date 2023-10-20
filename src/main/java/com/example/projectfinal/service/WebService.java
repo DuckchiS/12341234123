@@ -2,6 +2,7 @@ package com.example.projectfinal.service;
 
 import com.example.projectfinal.model.entity.Item;
 import com.example.projectfinal.model.entity.Orders;
+import com.example.projectfinal.model.entity.Purchase;
 import com.example.projectfinal.repository.*;
 import com.example.projectfinal.vo.OderVOList;
 import com.example.projectfinal.vo.OrderVO;
@@ -19,15 +20,23 @@ import java.util.stream.Collectors;
 public class WebService {
     private OrderRepository orderRepository;
     private ItemRepository itemRepository;
+    private PurchaseRepository purchaseRepository;
 
     public WebService(
                       OrderRepository orderRepository,
-                      ItemRepository itemRepository){
+                      ItemRepository itemRepository,PurchaseRepository purchaseRepository){
         this.orderRepository = orderRepository;
         this.itemRepository = itemRepository;
+        this.purchaseRepository = purchaseRepository;
     }
 
 
+    public Page<Purchase> Purchases(Pageable pageable){
+        Page<Purchase> result = purchaseRepository.findAll(pageable);
+
+
+        return result;
+    }
 
     public OderVOList Orders(Pageable pageable){
         Page<Orders> result = orderRepository.findAll(pageable);
